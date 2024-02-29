@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trident Sapphire Flag</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="redirectForm">
+        <input
+          type="text"
+          id="linkText"
+          class="form-control"
+          placeholder="Enter your redirect link..."
+        />
+        <button id="submitButton" type="submit">go</button>
+      </form>
+      <div>
+        <a
+          href="https://sapphire-api.target.com/sapphire/runtime/api/v1/optins?experimentId=913c730d-c89a-4efc-9da5-ba7bae86a920&treatmentIds=f51a9944-a24e-4ef8-aef4-8b68a665cbf8&redirect=https://target.com/circle"
+          >Trident Prod</a
+        >
+        &nbsp; &nbsp;
+        <a
+          href="https://sapphire-api.target.com/sapphire/runtime/api/v1/optins?experimentId=913c730d-c89a-4efc-9da5-ba7bae86a920&treatmentIds=f51a9944-a24e-4ef8-aef4-8b68a665cbf8&redirect=https://www-uat.target.com/circle"
+          >Trident UAT</a
+        >
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const BASE_SAPPHIRE_FLAG_PATH =
+      "https://sapphire-api.target.com/sapphire/runtime/api/v1/optins?experimentId=913c730d-c89a-4efc-9da5-ba7bae86a920&treatmentIds=f51a9944-a24e-4ef8-aef4-8b68a665cbf8&redirect=";
+
+    const loginForm = document.getElementById("redirectForm");
+    const submitButton = document.getElementById("submitButton");
+
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const linkText = document.getElementById("linkText");
+
+      if (linkText.value == "") {
+        alert("Ensure you input a valid link!");
+      } else {
+        submitButton.textContent = "going";
+        console.log(
+          `Redirecting to ${BASE_SAPPHIRE_FLAG_PATH + linkText.value}`
+        );
+        window.location.href = `${BASE_SAPPHIRE_FLAG_PATH}${linkText.value}`;
+      }
+    });
+  </script>
+</html>
